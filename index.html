@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>מחולל שמות צימרים</title>
+  </head>
+  <body>
+
+    <div>
+      <span id="first"></span>
+      <span id="second"></span>
+    </div>
+
+    <button id="generate">חולל</button>
+
+    <script src="//www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAZv1mQzclT6EhqpKlhP3WfoT9wIC_XDiU",
+        authDomain: "zimmer-655f7.firebaseapp.com",
+        databaseURL: "https://zimmer-655f7.firebaseio.com",
+        storageBucket: "zimmer-655f7.appspot.com",
+        messagingSenderId: "1019916631266"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.6/lodash.min.js"></script>
+
+  <script src="script.js"></script>
+
+  </body>
+</html>
