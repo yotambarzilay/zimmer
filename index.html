@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>מחולל שמות צימרים</title>
     <style>
 
@@ -137,6 +138,15 @@ button:active {
 }
       button:focus {
         outline: none
+      }
+
+      @media screen and (max-width: 600px) {
+          #box {
+              width: 320px;
+              height: 480px;
+              left: calc(50% - 160px);
+              top: calc(50% - 240px);
+          }
       }
     </style>
   </head>
