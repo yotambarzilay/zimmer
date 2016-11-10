@@ -20,8 +20,12 @@ $(function () {
         second: _.sample(second)
       };
 
-      $("#first").html(couple.first);
-      $("#second").html(couple.second);
+      $("#first, #second").fadeOut(50, function () {
+        $("#first").html(couple.first);
+        $("#second").html(couple.second);
+
+        $("#first, #second").fadeIn(200);
+      })
     }
 
     function transitionIntoView() {
@@ -32,11 +36,11 @@ $(function () {
     }
 
     function init() {
-      $("#generate").on('click', generateCouple);
-
       getWordsFromDB(function (words) {
           setWords(words);
           generateCouple();
+
+          $("#generate").on('click', generateCouple);
 
           transitionIntoView();
       });
