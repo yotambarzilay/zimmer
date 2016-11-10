@@ -14,36 +14,6 @@ $(function () {
     second = words.second;
   }
 
-    // var first = [
-    //   'בצל',
-    //   'נוף',
-    //   'בקתת',
-    //   'למרגלות',
-    //   'אחוזת',
-    //   'נופי',
-    //   'לאור',
-    //   'סוד',
-    //   'דרך',
-    //   'קסם',
-    //   'סוויטת',
-    //   'פנינת',
-    //   'זריחת'
-    // ];
-    // var second = [
-    //   'האלון',
-    //   'הכנרת',
-    //   'האוהבים',
-    //   'החורש',
-    //   'התבור',
-    //   'הגולן',
-    //   'השלווה',
-    //   'האקליפטוס',
-    //   'הקסם',
-    //   'בראשית',
-    //   'הצוק',
-    //   'התמר'
-    // ];
-
     function generateCouple() {
       var couple = {
         first: _.sample(first),
@@ -54,12 +24,21 @@ $(function () {
       $("#second").html(couple.second);
     }
 
+    function transitionIntoView() {
+      $("#loading")
+        .fadeOut(100, function () {
+          $("#contentWrapper").fadeIn(300);
+        })
+    }
+
     function init() {
       $("#generate").on('click', generateCouple);
-      
+
       getWordsFromDB(function (words) {
           setWords(words);
           generateCouple();
+
+          transitionIntoView();
       });
     }
 
