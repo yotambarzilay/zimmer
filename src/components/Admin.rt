@@ -1,3 +1,42 @@
-<rt-import name="*" as="authAPI" from="../apis/authAPI" />
-
-<button onClick="{authAPI.loginWithGoogle}">Login</button>
+<rt-import name="default" as="wordsStore" from="../stores/wordsStore" />
+<rt-import name="default" as="authStore" from="../stores/authStore" />
+<rt-import name="default" as="RemovableTextInput" from="./RemovableTextInput/RemovableTextInput" />
+<div>
+  <button rt-if="!authStore.isLoggedIn" onClick="{authStore.login}">התחבר</button>
+  <button rt-if="authStore.isLoggedIn" onClick="{authStore.logout}">התנתק</button>
+  <h3 rt-if="authStore.isLoggedIn && !authStore.isAdmin" >התה לא הדמין</h3>
+  <div rt-if="authStore.isAdmin" class="listsContainer">
+    <div class="list">
+      <h3>מילה ראשונה</h3>
+      <ul>
+        <li>
+          <input type="text" ref="first" /> <button onClick="{this.addFirst}">+</button>
+        </li>
+        <li rt-repeat="word, id in wordsStore.getFirst">
+          <RemovableTextInput label="{word}"
+                              key="{id}"
+                              id="{id}"
+                              onSubmit="{this.updateFirst}"
+                              onDelete="{this.removeFirst}"
+                            />
+        </li>
+      </ul>
+    </div>
+    <div class="list">
+      <h3>מילה שניה</h3>
+      <ul>
+        <li>
+          <input type="text" ref="second" /> <button onClick="{this.addSecond}">+</button>
+        </li>
+        <li rt-repeat="word, id in wordsStore.getSecond">
+          <RemovableTextInput label="{word}"
+                              key="{id}"
+                              id="{id}"
+                              onSubmit="{this.updateSecond}"
+                              onDelete="{this.removeSecond}"
+                            />
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,32 +1,30 @@
 import { observable, computed, action } from 'mobx';
-import { loginWithGoogle, getLoggedInUser, logout } from '../api/authAPI';
+import { loginWithGoogle, getLoggedInUser, logout } from '../apis/authAPI';
 
 class AuthStore {
-    @observable uid;
-    @observable isAdmin;
+    @observable _uid;
+    @observable _isAdmin;
 
 
     constructor () {
-        getLoggedInUser().then(this.onUserChanged)
+        //getLoggedInUser().then(this.onUserChanged)
     }
 
     @computed get isLoggedIn() {
-        return !!this.uid;
+        return !!this._uid;
     }
 
     @computed get isAdmin() {
-      return this.isAdmin;
+      return !!this._isAdmin;
     }
 
     @action onUserChanged = (user) => {
         if (user) {
-            this.uid = user.uid;
-            this.photoURL = user.photoURL;
-            this.userName = user.userName;
+            this._uid = user.uid;
+            this._isAdmin = user.isAdmin;
         } else {
-            this.uid = null;
-            this.photoURL = null;
-            this.userName = null;
+            this._uid = null;
+            this._isAdmin = false;
         }
     };
 
@@ -35,7 +33,7 @@ class AuthStore {
     };
 
     logout = () => {
-        logout().then(this.onUserChanged)
+      logout().then(this.onUserChanged);
     }
 }
 

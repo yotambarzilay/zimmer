@@ -23,10 +23,7 @@ export function loginWithGoogle() {
     firebase.auth().signInWithPopup(provider)
       .then(result => result.user)
       .then(getUserInfo)
-      .then(function(userInfo) {
-        console.log('here:', userInfo);
-        resolve(userInfo)
-      })
+      .then(resolve)
       .catch(reject);
   })
 }
@@ -35,9 +32,12 @@ export function getLoggedInUser() {
   return new Promise((resolve, reject) => {
     const onAuthStateChange = user => {
       firebase.auth().removeAuthTokenListener(onAuthStateChange);
-      getAdminStatus(user);
-      resolve(user);
+      getUserInfo(user).then(resolve);
     };
     firebase.auth().onAuthStateChanged(onAuthStateChange);
   });
+}
+
+export function logout() {
+  return firebase.auth().signOut();
 }

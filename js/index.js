@@ -4,14 +4,14 @@
   var second = [];
 
   function getWordsFromDB(cb) {
-    firebase.database().ref('data').once('value', function (snapshot) {
+    firebase.database().ref('words').once('value', function (snapshot) {
         cb(snapshot.val())
     });
   }
 
   function setWords(words) {
-    first = words.first;
-    second = words.second;
+    first = _.values(words.first);
+    second = _.values(words.second);
   }
 
     function generateCouple() {

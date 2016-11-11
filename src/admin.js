@@ -1,7 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import wordsStore from './stores/WordsStore';
+import { autorun, useStrict } from 'mobx';
+
+import wordsStore from './stores/wordsStore';
+
+useStrict(true);
+
+autorun(() => console.log('first:', wordsStore.getFirst) );
+autorun(() => console.log('second:', wordsStore.getSecond) );
+
+window.store = wordsStore;
 
 import Admin from './components/Admin';
 
