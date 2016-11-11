@@ -12,9 +12,8 @@
         <li>
           <input type="text" ref="first" /> <button onClick="{this.addFirst}">+</button>
         </li>
-        <li rt-repeat="word, id in wordsStore.getFirst">
+        <li rt-repeat="word, id in wordsStore.getFirst" key="{id}">
           <RemovableTextInput label="{word}"
-                              key="{id}"
                               id="{id}"
                               onSubmit="{this.updateFirst}"
                               onDelete="{this.removeFirst}"
@@ -28,9 +27,8 @@
         <li>
           <input type="text" ref="second" /> <button onClick="{this.addSecond}">+</button>
         </li>
-        <li rt-repeat="word, id in wordsStore.getSecond">
+        <li rt-repeat="word, id in wordsStore.getSecond" key="{id}">
           <RemovableTextInput label="{word}"
-                              key="{id}"
                               id="{id}"
                               onSubmit="{this.updateSecond}"
                               onDelete="{this.removeSecond}"

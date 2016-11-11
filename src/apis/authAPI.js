@@ -32,7 +32,12 @@ export function getLoggedInUser() {
   return new Promise((resolve, reject) => {
     const onAuthStateChange = user => {
       firebase.auth().removeAuthTokenListener(onAuthStateChange);
-      getUserInfo(user).then(resolve);
+
+      if (user) {
+        getUserInfo(user).then(resolve);
+      } else {
+        resolve(null);
+      }
     };
     firebase.auth().onAuthStateChanged(onAuthStateChange);
   });
