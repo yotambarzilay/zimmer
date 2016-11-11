@@ -14,8 +14,8 @@ module.exports = {
             { test: /\.scss/, exclude: /node_modules/, loaders: ['style', 'css', 'sass'] },
             { test: /\.rt/, exclude: /node_modules/, loaders: ['react-templates-loader?modules=amd'] }
         ]
-    }//,
-    // plugins: [
-    //   new webpack.optimize.UglifyJsPlugin({minimize: true})
-    // ]
+    },
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin({minimize: true})
+    ]
 };

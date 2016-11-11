@@ -6,15 +6,15 @@ const getAdminStatus = (uid) => {
     .then(snapshot => !!snapshot.val());
 }
 
-const getUserInfo = ({uid = null} = {}) => {
-  if (!uid) {
+const getUserInfo = (user) => {
+  if (!user) {
     return null;
   }
 
-  return getAdminStatus(uid)
+  return getAdminStatus(user.uid)
     .then(isAdmin => {
-        return { uid, isAdmin };
-      });
+        return { uid: user.uid, isAdmin };
+      })
 }
 
 export function loginWithGoogle() {
