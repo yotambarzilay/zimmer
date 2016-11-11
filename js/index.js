@@ -1,4 +1,4 @@
-$(function () {
+  $(function () {
 
   var first = [];
   var second = [];

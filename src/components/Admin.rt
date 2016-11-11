@@ -1,0 +1,3 @@
+<rt-import name="*" as="authAPI" from="../apis/authAPI" />
+
+<button onClick="{authAPI.loginWithGoogle}">Login</button>
