@@ -6,7 +6,7 @@ const getAdminStatus = (uid) => {
     .then(snapshot => !!snapshot.val());
 }
 
-const getUserInfo = ({uid}) => {
+const getUserInfo = ({uid = null} = {}) => {
   if (!uid) {
     return null;
   }
