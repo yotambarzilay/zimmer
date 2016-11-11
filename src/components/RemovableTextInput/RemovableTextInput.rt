@@ -1,0 +1,5 @@
+<div>
+  <button rt-if="!!this.props.onDelete" key="btnDelete" onClick="{this.onDelete}">x</button>
+  <input type="text" defaultValue="{this.props.label}" ref="input" />
+  <button onClick="{this.onSubmit}">v</button>
+</div>
