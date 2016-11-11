@@ -7,7 +7,7 @@ class AuthStore {
 
 
     constructor () {
-        //getLoggedInUser().then(this.onUserChanged)
+        getLoggedInUser().then(this.onUserChanged)
     }
 
     @computed get isLoggedIn() {
