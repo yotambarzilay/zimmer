@@ -5,7 +5,8 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack-dev-server --progress --colors --hot --config ./webpack.dev.config.js",
-    "build": "webpack --config ./webpack.prod.config.js"
+    "build": "webpack --config ./webpack.prod.config.js",
+    "sync": "git checkout gh-pages && git merge master && git push && git checkout master"
   },
   "repository": {
     "type": "git",
