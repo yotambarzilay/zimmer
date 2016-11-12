@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Zimmer Name Generator",
   "scripts": {
-    "start": "npm run dev",
+    "start": "npm run makedist && npm run dev",
+    "makedist": "rm -rf dist/ && mkdir dist && mkdir dist/js && cp admin.html dist/admin.html",
     "dev": "webpack-dev-server --progress --colors --hot --config ./webpack.dev.config.js",
     "build": "webpack --config ./webpack.prod.config.js",
     "sync": "git checkout gh-pages && git merge master && git push && git checkout master"

@@ -9,8 +9,8 @@ module.exports = {
       './src/admin.js'
     ],
     output: {
-      path: __dirname + '/dist/js',
-      publicPath: '/',
+      path: __dirname + '/dist',
+      publicPath: '/js/',
       filename: 'admin.js'
     },
     module: {
