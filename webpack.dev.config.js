@@ -9,7 +9,7 @@ module.exports = {
       './src/admin.js'
     ],
     output: {
-      path: __dirname + '/js',
+      path: __dirname + '/dist/js',
       publicPath: '/',
       filename: 'admin.js'
     },
@@ -21,7 +21,7 @@ module.exports = {
         ]
     },
     devServer: {
-      contentBase: '',
+      contentBase: './dist/',
       hot: true
     }
 };

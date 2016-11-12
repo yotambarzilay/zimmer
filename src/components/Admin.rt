@@ -10,14 +10,18 @@
       <h3>מילה ראשונה</h3>
       <ul>
         <li>
-          <input type="text" ref="first" /> <button onClick="{this.addFirst}">+</button>
+          <RemovableTextInput onSubmit="{this.addFirst}"
+                              clearOnSubmit="{true}"
+                              submitLabel="+"
+                            />
         </li>
         <li rt-repeat="word, id in wordsStore.getFirst" key="{id}">
-          <RemovableTextInput label="{word}"
-                              id="{id}"
-                              onSubmit="{this.updateFirst}"
-                              onDelete="{this.removeFirst}"
-                            />
+        <RemovableTextInput label="{word}"
+                            id="{id}"
+                            onSubmit="{this.updateFirst}"
+                            onDelete="{this.removeFirst}"
+                            submitLabel="v"
+                          />
         </li>
       </ul>
     </div>
@@ -25,7 +29,10 @@
       <h3>מילה שניה</h3>
       <ul>
         <li>
-          <input type="text" ref="second" /> <button onClick="{this.addSecond}">+</button>
+        <RemovableTextInput onSubmit="{this.addSecond}"
+                            clearOnSubmit="{true}"
+                            submitLabel="+"
+                          />
         </li>
         <li rt-repeat="word, id in wordsStore.getSecond" key="{id}">
           <RemovableTextInput label="{word}"

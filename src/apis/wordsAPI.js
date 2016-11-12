@@ -1,14 +1,16 @@
 import _ from 'lodash';
 import firebase from './firebase';
 
+const getWordsRef = () => firebase.database().ref('words');
+
 export function getWords() {
-  return firebase.database().ref('words').once('value').then(snapshot => snapshot.val());
+  return getWordsRef().once('value').then(snapshot => snapshot.val());
 }
 
 export function trackChanges(onChange) {
-  var dataRef = firebase.database().ref('words');
+  var wordsRef = getWordsRef();
   _.forEach(['first', 'second'], (collection) => {
-    var collectionRef = dataRef.child(collection);
+    var collectionRef = wordsRef.child(collection);
 
     collectionRef.orderByPriority().startAt(Date.now()).on('child_added', function (snapshot) {
       onChange({
@@ -40,24 +42,15 @@ export function trackChanges(onChange) {
   });
 }
 
-export function convert(data) {
-  return;
-  var words = firebase.database().ref('words');
-  _.forEach(['first', 'second'], function (col) {
-    var ref = words.child(col);
-    _.forEach(data[col], (v) => addWord(col, v))
-  });
-}
-
 export function addWord(collection, word) {
-  var newRef = firebase.database().ref('words').child(collection).push();
+  var newRef = getWordsRef().child(collection).push();
   newRef.setWithPriority(word, Date.now());
 }
 
 export function updateWord(collection, word, key) {
-  firebase.database().ref('words').child(collection).update({[key]: word})
+  getWordsRef().child(collection).update({[key]: word})
 }
 
 export function deleteWord(collection, key) {
-  firebase.database().ref('words').child(collection).child(key).remove();
+  getWordsRef().child(collection).child(key).remove();
 }

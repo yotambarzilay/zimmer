@@ -8,13 +8,7 @@ import { addWord, updateWord, deleteWord } from '../apis/wordsAPI';
 import template from './Admin.rt';
 
 @observer class Admin extends React.Component {
-  constructor () {
-    super();
-  }
-
-  addFirst = () => {
-    var word = _.trim(this.refs.first.value);
-    this.refs.first.value = '';
+  addFirst = (word) => {
     addWord('first', word);
   }
 
@@ -26,9 +20,7 @@ import template from './Admin.rt';
     deleteWord('first', key);
   }
 
-  addSecond = () => {
-    var word = _.trim(this.refs.second.value);
-    this.refs.second.value = '';
+  addSecond = (word) => {
     addWord('second', word);
   }
 

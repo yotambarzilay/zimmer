@@ -2,14 +2,6 @@ import _ from 'lodash';
 import { observable, asMap, action, computed, toJS } from 'mobx';
 import { getWords, trackChanges, addWord, convert } from '../apis/wordsAPI';
 
-const arrToObj = (arr) => {
-  return _.transform(arr, (obj, v, i) => {
-    if (v) {
-      obj[i] = v;
-    }
-  }, {})
-}
-
 class WordsStore {
   @observable first;
   @observable second;

@@ -39,6 +39,4 @@ class AuthStore {
 
 const authStore = new AuthStore();
 
-window.authStore = authStore;
-
 export default authStore;
