@@ -2,12 +2,22 @@ import _ from 'lodash';
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import authStore from '../stores/authStore';
+import wordsStore from '../stores/wordsStore';
 import { addWord, updateWord, deleteWord } from '../apis/wordsAPI';
 
 import template from './Admin.rt';
 
-@observer class Admin extends React.Component {
+
+export default @observer class Admin extends React.Component {
+
+  getFirst () {
+    return _.map(wordsStore.getFirst, (word, key) => ({ word, key })).reverse();
+  }
+
+  getSecond () {
+    return _.map(wordsStore.getSecond, (word, key) => ({ word, key })).reverse();
+  }
+
   addFirst = (word) => {
     addWord('first', word);
   }
@@ -36,5 +46,3 @@ import template from './Admin.rt';
     return template.apply(this);
   }
 }
-
-export default Admin;

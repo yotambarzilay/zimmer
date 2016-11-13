@@ -15,9 +15,9 @@
                               submitLabel="+"
                             />
         </li>
-        <li rt-repeat="word, id in wordsStore.getFirst" key="{id}">
-        <RemovableTextInput label="{word}"
-                            id="{id}"
+        <li rt-repeat="wordObj in this.getFirst()" key="{wordObj.key}">
+        <RemovableTextInput label="{wordObj.word}"
+                            id="{wordObj.key}"
                             onSubmit="{this.updateFirst}"
                             onDelete="{this.removeFirst}"
                             submitLabel="v"
@@ -34,11 +34,12 @@
                             submitLabel="+"
                           />
         </li>
-        <li rt-repeat="word, id in wordsStore.getSecond" key="{id}">
-          <RemovableTextInput label="{word}"
-                              id="{id}"
+        <li rt-repeat="wordObj in this.getSecond()" key="{wordObj.key}">
+        <RemovableTextInput label="{wordObj.word}"
+                            id="{wordObj.key}"
                               onSubmit="{this.updateSecond}"
                               onDelete="{this.removeSecond}"
+                              submitLabel="v"
                             />
         </li>
       </ul>
