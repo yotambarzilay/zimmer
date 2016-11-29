@@ -20,11 +20,13 @@
         second: _.sample(second)
       };
 
-      $("#first, #second").fadeOut(50, function () {
+      $("#first, #second, #zimmer-pic").fadeOut("fast", function () {
         $("#first").html(couple.first);
         $("#second").html(couple.second);
+        $('.picture').addClass('multiple-borders');
+        $("#zimmer-pic").attr('src', 'http://www.zimmer.co.il/zait-halav/B_(1).jpg');
 
-        $("#first, #second").fadeIn(200);
+        $("#first, #second, #zimmer-pic").fadeIn("fast");
       })
     }
 
@@ -40,7 +42,7 @@
           setWords(words);
           generateCouple();
 
-          $("#generate").on('click', generateCouple);
+          $(".generate-button").on('click', generateCouple);
 
           transitionIntoView();
       });

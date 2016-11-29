@@ -1,196 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAb5rWAABNuAAGegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMzMzMzMzMzMzMzMzMzMzMwIiIiESIiEQAiIiIRIiIRACIREhEiIhEAIhESESIiEQAiERIRIiIRACIREhEiIhEAIiIiESIiEQEREREREREREiIiIhEiIhEgIiIiIRIhEgACIiIiEiEgAAAiIiIhEgAAAAIiIiIgAAAAACIiIgAAAAAAAAAAAAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAAAAAAAAAAAAAIABAADAAwAA4AcAAPAPAAD4HwAA" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation-rtl.min.css">
+    <link rel="stylesheet" type="text/css" href="loading.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQvvvvAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAb5rWAABNuAAGegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMzMzMzMzMzMzMzMzMzMzMwIiIiESIiEQAiIiIRIiIRACIREhEiIhEAIhESESIiEQAiERIRIiIRACIREhEiIhEAIiIiESIiEQEREREREREREiIiIhEiIhEgIiIiIRIhEgACIiIiEiEgAAAiIiIhEgAAAAIiIiIgAAAAACIiIgAAAAAAAAAAAAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAAAAAAAAAAAAAIABAADAAwAA4AcAAPAPAAD4HwAA"
+          rel="icon" type="image/x-icon"/>
     <title>מחולל שמות צימרים</title>
-    <style>
+</head>
+<body dir="rtl">
+<div class="site">
+    <div class="site-content small-12 small-centered row text-center">
+        <h1 class="site-title align-center">מחולל שמות צימרים</h1>
 
-      @import url(//fonts.googleapis.com/earlyaccess/alefhebrew.css);
-
-      html, body {
-        height: 100%;
-      }
-
-      body {
-        font-family: "Alef Hebrew",
-              “Helvetica Neue”,
-              Helvetica,
-              Arial,
-              sans-serif;
-        background: url('http://www.explorestrandja.com/wp-content/uploads/2009/07/lonely-strandja-oak.jpg');
-        background-size: cover;
-      }
-
-      h2 {
-        margin: 10px 0 0;
-        color: aliceblue;
-        text-shadow: -1px 1px #193047;
-      }
-
-      h1 {
-        color: antiquewhite;
-        text-shadow: -1px 1px #193047;
-      }
-
-      #box {
-        width: 480px;
-        height: 320px;
-        position: absolute;
-        left: calc(50% - 240px);
-        top: calc(50% - 160px);
-        background: rgba(220, 220, 220, 0.35);
-      }
-
-      #contentWrapper {
-        display: none;
-        height: 100%;
-      }
-
-      #content {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        text-align: center;
-      }
-
-      button {
-        display: inline-block;
-        margin: 0 10px 10px 0;
-        padding: 15px 45px;
-        font-size: 18px;
-        font-family: "Bitter",serif;
-        line-height: 1.8;
-        appearance: none;
-        box-shadow: none;
-        border-radius: 0;
-        color: #fff;
-        background-color: #6496c8;
-        text-shadow: -1px 1px #417cb8;
-        border: none;
-      }
-
-button:hover {
-  background-color: #346392;
-  text-shadow: -1px 1px #27496d;
-}
-
-button:active {
-  background-color: #27496d;
-  text-shadow: -1px 1px #193047;
-}
-
-#loading {
-  width: 100%;
-  height: 100%;
-}
-
-.spinner {
-  width: 32px;
-  height: 32px;
-  position: relative;
-  top: calc(50% - 16px);
-  left: calc(50% - 16px);
-  text-align: center;
-
-  -webkit-animation: sk-rotate 1.4s infinite linear;
-  animation: sk-rotate 1.4s infinite linear;
-}
-
-.dot1, .dot2 {
-  width: 60%;
-  height: 60%;
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  background-color: lightgrey;
-  border-radius: 100%;
-
-  -webkit-animation: sk-bounce 1.4s infinite ease-in-out;
-  animation: sk-bounce 1.4s infinite ease-in-out;
-}
-
-.dot2 {
-  top: auto;
-  bottom: 0;
-  -webkit-animation-delay: -0.7s;
-  animation-delay: -0.7s;
-}
-
-@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
-@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
-
-@-webkit-keyframes sk-bounce {
-  0%, 100% { -webkit-transform: scale(0.0) }
-  50% { -webkit-transform: scale(1.0) }
-}
-
-@keyframes sk-bounce {
-  0%, 100% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 50% {
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
-  }
-}
-      button:focus {
-        outline: none
-      }
-
-      @media screen and (max-width: 420px) {
-          #box {
-              width: 100%;
-              height: 480px;
-              top: calc(50% - 240px);
-              left: 0;
-          }
-      }
-    </style>
-  </head>
-  <body>
-
-    <div id="box">
-      <div id="loading">
-        <div class="spinner">
-          <div class="dot1"></div>
-          <div class="dot2"></div>
-        </div>
-      </div>
-      <div id="contentWrapper">
-        <div id="content">
-          <h2>מחולל שמות צימרים</h2>
-          <h1>
-            <span id="first"></span>
-            <span id="second"></span>
-          </h1>
-          <button id="generate">חולל</button>
+        <div class="site-wrapper small-6 small-centered" id="box">
+            <div id="loading">
+                <div class='uil-ripple-css' style='transform:scale(0.92);'>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
 
-      </div>
+        <div class="generated-content" id="contentWrapper">
+            <div class="picture small-8 medium-3 small-centered">
+                <img id="zimmer-pic"/>
+            </div>
+            <div>
+                <h1 class="zimmer-name">
+                    <span id="first"></span>
+                    <span id="second"></span>
+                </h1>
+            </div>
+        </div>
+
+        <div>
+            <button class="secondary button large generate-button">חולל</button>
+        </div>
     </div>
+    <div class="site-footer small-12 small-centered row text-center">
+        <span>Like</span>
+        <span>&#169; 2016 מחולל שמות צימרים: חן אלישע, ערן משיח ויותם ברזילאי.</span>
+        <span><a href="http://www.freepik.com/free-vector/nature-background-template_833824.htm">Background designed by Freepik</a></span>
+    </div>
+</div>
 
-
-
-    <script src="//www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
+<script src="//www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
         apiKey: "AIzaSyAZv1mQzclT6EhqpKlhP3WfoT9wIC_XDiU",
         authDomain: "zimmer-655f7.firebaseapp.com",
         databaseURL: "https://zimmer-655f7.firebaseio.com",
         storageBucket: "zimmer-655f7.appspot.com",
         messagingSenderId: "1019916631266"
-      };
-      firebase.initializeApp(config);
-    </script>
-    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.6/lodash.min.js"></script>
+    };
+    firebase.initializeApp(config);
+</script>
+<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.6/lodash.min.js"></script>
 
-  <script src="js/index.js"></script>
+<script src="js/index.js"></script>
 
-  </body>
+</body>
 </html>
