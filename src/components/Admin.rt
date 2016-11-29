@@ -13,6 +13,7 @@
           <RemovableTextInput onSubmit="{this.addFirst}"
                               clearOnSubmit="{true}"
                               submitLabel="+"
+                              onChange="{this.setFilterFirst}"
                             />
         </li>
         <li rt-repeat="wordObj in this.getFirst()" key="{wordObj.key}">
@@ -32,6 +33,7 @@
         <RemovableTextInput onSubmit="{this.addSecond}"
                             clearOnSubmit="{true}"
                             submitLabel="+"
+                            onChange="{this.setFilterSecond}"
                           />
         </li>
         <li rt-repeat="wordObj in this.getSecond()" key="{wordObj.key}">

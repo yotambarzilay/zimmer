@@ -10,6 +10,10 @@ class RemovableTextInput extends React.Component {
     }
   }
 
+  onChange = (e) => {
+    this.props.onChange && this.props.onChange(e.target.value);
+  }
+
   onDelete = () => {
     this.props.onDelete(this.props.id);
   }

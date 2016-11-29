@@ -1,19 +1,33 @@
 import _ from 'lodash';
 import { observable, asMap, action, computed, toJS } from 'mobx';
-import { getWords, trackChanges, addWord, convert } from '../apis/wordsAPI';
+import { getWords, trackChanges, addWord } from '../apis/wordsAPI';
 
 class WordsStore {
   @observable first;
   @observable second;
+  @observable filterFirst;
+  @observable filterSecond;
+
 
   constructor () {
     this.first = asMap({});
     this.second = asMap({});
 
+    this.filterFirst = '';
+    this.filterSecond = '';
+
     _.bindAll(this);
 
     getWords().then(this.setWords)
     trackChanges(this.onChange);
+  }
+
+  @action setFilterFirst = (filter) => {
+    this.filterFirst = filter;
+  }
+
+  @action setFilterSecond = (filter) => {
+    this.filterSecond = filter;
   }
 
   @action onChange = ({collection, type, key, val}) => {
@@ -33,11 +47,11 @@ class WordsStore {
   }
 
   @computed get getFirst () {
-    return toJS(this.first);
+    return _.pickBy(toJS(this.first), (word) => _.includes(word, this.filterFirst));
   }
 
   @computed get getSecond () {
-    return toJS(this.second);
+    return _.pickBy(toJS(this.second), (word) => _.includes(word, this.filterSecond));
   }
 }
 

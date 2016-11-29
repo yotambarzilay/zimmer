@@ -18,6 +18,14 @@ export default @observer class Admin extends React.Component {
     return _.map(wordsStore.getSecond, (word, key) => ({ word, key })).reverse();
   }
 
+  setFilterFirst (filter) {
+    wordsStore.setFilterFirst(filter);
+  }
+
+  setFilterSecond (filter) {
+    wordsStore.setFilterSecond(filter);
+  }
+
   addFirst = (word) => {
     addWord('first', word);
   }
