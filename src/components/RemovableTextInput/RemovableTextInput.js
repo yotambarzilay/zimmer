@@ -21,7 +21,9 @@ class RemovableTextInput extends React.Component {
   onSubmit = () => {
     this.props.onSubmit(this.refs.input.value, this.props.id);
     if (this.props.clearOnSubmit) {
+      // todo - use state
       this.refs.input.value = '';
+      this.props.onChange('');
     }
   }
 }
