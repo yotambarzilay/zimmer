@@ -1,8 +1,21 @@
 import React from 'react';
-import template from './RemovableTextInput.rt';
 
 class RemovableTextInput extends React.Component {
-  render = template
+
+  render = () => {
+    return (
+        <div>
+            {this.props.onDelete && <button key="btnDelete" onClick={this.onDelete}>x</button>}
+            <input type="text"
+                ref="input"
+                defaultValue={this.props.label || ''}
+                onKeyPress={this.onKeyPress}
+                onChange={this.onChange}
+                    />
+            <button onClick={this.onSubmit}>{this.props.submitLabel}</button>
+        </div>
+    );
+  }
 
   onKeyPress = (e) => {
     if (e.key === 'Enter') {

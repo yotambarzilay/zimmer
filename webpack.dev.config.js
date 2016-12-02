@@ -16,8 +16,7 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot-loader', 'babel'] },
-            { test: /\.scss/, exclude: /node_modules/, loaders: ['style', 'css', 'sass'] },
-            { test: /\.rt/, exclude: /node_modules/, loaders: ['react-templates-loader?modules=amd'] }
+            { test: /\.scss/, exclude: /node_modules/, loaders: ['style', 'css', 'sass'] }
         ]
     },
     devServer: {
