@@ -2,10 +2,10 @@ import _ from 'lodash';
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import wordsStore from '../../stores/wordsStore';
-import { addWord, updateWord, deleteWord } from '../../apis/wordsAPI';
+import wordsStore from 'stores/wordsStore';
+import { addWord, updateWord, deleteWord } from 'apis/wordsAPI';
 
-import WordsList from '../WordsList/WordsList';
+import WordsList from 'components/WordsList';
 
 const toWordsList = (wordsMap) => _.map(wordsMap, (word, key) => ({ word, key })).reverse()
 

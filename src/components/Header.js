@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import authStore from '../../stores/authStore';
+import authStore from 'stores/authStore';
 
 const Header = observer(() => (
     <div>

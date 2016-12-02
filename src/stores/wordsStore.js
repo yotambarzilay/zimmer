@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { observable, asMap, action, computed, toJS } from 'mobx';
-import { getWords, trackChanges, addWord } from '../apis/wordsAPI';
+import { getWords, trackChanges, addWord } from 'apis/wordsAPI';
 
 class WordsStore {
   @observable first;

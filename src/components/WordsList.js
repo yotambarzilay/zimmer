@@ -1,6 +1,6 @@
 import React from 'react';
 
-import RemovableTextInput from '../RemovableTextInput/RemovableTextInput';
+import RemovableTextInput from 'components/RemovableTextInput';
 
 const WordsList = ({title, wordsList, onAdd, onFilterChange, onChange, onDelete}) => (
     <div className="list">

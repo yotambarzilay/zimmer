@@ -1,5 +1,5 @@
 import { observable, computed, action } from 'mobx';
-import { loginWithGoogle, getLoggedInUser, logout } from '../apis/authAPI';
+import { loginWithGoogle, getLoggedInUser, logout } from 'apis/authAPI';
 
 class AuthStore {
     @observable _uid;
