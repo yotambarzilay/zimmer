@@ -1,4 +1,4 @@
-import firebase from './firebase';
+import firebase from 'apis/firebase';
 
 const getAdminStatus = (uid) => {
   return firebase.database().ref('admins/' + uid)

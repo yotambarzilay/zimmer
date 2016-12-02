@@ -1,10 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import authStore from '../stores/authStore';
+import authStore from 'stores/authStore';
 
-import Header from './Header/Header';
-import MainView from './MainView/MainView';
+import Header from 'components/Header';
+import MainView from 'components/MainView';
 
 const Admin = observer(() => (
     <div>

@@ -19,6 +19,9 @@ module.exports = {
             { test: /\.scss/, exclude: /node_modules/, loaders: ['style', 'css', 'sass'] }
         ]
     },
+    resolve:{
+        modulesDirectories: ['src', 'node_modules']
+    },
     devServer: {
       contentBase: './dist/',
       hot: true
