@@ -2,13 +2,14 @@
 
 body {
     font-family: 'Rubik', sans-serif;
-    background: linear-gradient(to right, rgba(147, 206, 222, 1) 0%, rgba(117, 189, 209, 1) 41%, rgba(117, 189, 209, 1) 70%, rgba(147, 206, 222, 1) 100%);
 }
 
 .site {
     display: flex;
     height: 100%;
     flex-direction: column;
+    background: url('src/bg.png') no-repeat;
+    background-size: cover ;
 }
 
 .site-content {
