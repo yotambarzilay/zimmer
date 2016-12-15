@@ -6,7 +6,7 @@
     "start": "webpack-dev-server --progress --colors --hot --config ./webpack.dev.config.js",
     "build": "webpack --progress --colors --config ./webpack.prod.config.js",
     "serve": "serve docs/",
-    "publish": "npm version $1 -m \"Publish version %s\""
+    "publish": "npm version $1 -m \"Publish version %s\" && git push && git push --tags"
   },
   "repository": {
     "type": "git",
