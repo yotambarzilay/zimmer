@@ -22,6 +22,15 @@ module.exports = {
     resolve:{
         modulesDirectories: ['src', 'node_modules']
     },
+    externals: {
+        lodash: '_',
+        firebase: 'firebase',
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        redux: 'Redux',
+        mobx: 'mobx',
+        'mobx-react': 'mobxReact'
+    },
     devServer: {
       contentBase: './docs/',
       hot: true

@@ -17,6 +17,15 @@ module.exports = {
     resolve:{
         modulesDirectories: ['src', 'node_modules']
     },
+    externals: {
+        lodash: '_',
+        firebase: 'firebase',
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        redux: 'Redux',
+        mobx: 'mobx',
+        'mobx-react': 'mobxReact'
+    },
     plugins: [
       new webpack.optimize.UglifyJsPlugin({minimize: true})
     ]
