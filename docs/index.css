@@ -8,7 +8,7 @@ body {
     display: flex;
     height: 100%;
     flex-direction: column;
-    background: url('src/bg.png') no-repeat;
+    background: url('bg.png') no-repeat;
     background-size: cover ;
 }
 

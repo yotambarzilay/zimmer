@@ -4,7 +4,7 @@ module.exports = {
     cache: true,
     entry: './src/admin.js',
     output: {
-      path: __dirname + '/js',
+      path: __dirname + '/docs/js',
       publicPath: '/',
       filename: 'admin.js'
     },
