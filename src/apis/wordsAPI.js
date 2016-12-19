@@ -1,56 +1,42 @@
 import _ from 'lodash';
-import firebase from 'apis/firebase';
-
-const getWordsRef = () => firebase.database().ref('words');
-
-export function getWords() {
-  return getWordsRef().once('value').then(snapshot => snapshot.val());
-}
+import * as clientDB from './clientDB';
 
 export function trackChanges(onChange) {
-  var wordsRef = getWordsRef();
   _.forEach(['first', 'second'], (collection) => {
-    var collectionRef = wordsRef.child(collection);
 
-    collectionRef.orderByPriority().startAt(Date.now()).on('child_added', function (snapshot) {
-      onChange({
-        collection,
-        type: 'update',
-        key: snapshot.key,
-        val: snapshot.val()
-      });
+    clientDB.listenToChildAdded('words/' + collection, (val, key) => {
+        onChange({
+            collection,
+            type: 'update',
+            key,
+            val
+        });
     });
 
-    collectionRef.on('child_changed', function (snapshot) {
-      onChange({
-        collection,
-        type: 'update',
-        key: snapshot.key,
-        val: snapshot.val()
+      clientDB.listenToChildChanged('words/' + collection, (val, key) => {
+          onChange({
+              collection,
+              type: 'update',
+              key,
+              val
+          });
       });
-    });
 
-    collectionRef.on('child_removed', function (snapshot) {
-      onChange({
-        collection,
-        type: 'remove',
-        key: snapshot.key,
-        val: snapshot.val()
+      clientDB.listenToChildRemoved('words/' + collection, (val, key) => {
+          onChange({
+              collection,
+              type: 'remove',
+              key,
+              val
+          });
       });
-    });
-
   });
 }
 
-export function addWord(collection, word) {
-  var newRef = getWordsRef().child(collection).push();
-  newRef.setWithPriority(word, Date.now());
-}
+export const getWords = () => clientDB.read('words');
 
-export function updateWord(collection, word, key) {
-  getWordsRef().child(collection).update({[key]: word})
-}
+export const addWord = (collection, word) => clientDB.push('words/' + collection, word);
 
-export function deleteWord(collection, key) {
-  getWordsRef().child(collection).child(key).remove();
-}
+export const updateWord = (collection, word, key) => clientDB.update('words/' + collection, key, word);
+
+export const deleteWord = (collection, key) => clientDB.remove('words/' + collection + '/' + key);
