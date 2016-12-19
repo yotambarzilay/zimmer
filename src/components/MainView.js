@@ -1,33 +1,30 @@
 import _ from 'lodash';
 import React from 'react';
-import { observer } from 'mobx-react';
-
-import wordsStore from 'stores/wordsStore';
-import { addWord, updateWord, deleteWord } from 'apis/wordsAPI';
+import { observer, inject } from 'mobx-react';
 
 import WordsList from 'components/WordsList';
 
 const toWordsList = (wordsMap) => _.map(wordsMap, (word, key) => ({ word, key })).reverse()
 
-const MainView = observer(() => (
+const MainView = inject('wordsStore')(observer(({wordsStore}) => (
     <div className="listsContainer">
         <WordsList title="מילה ראשונה"
                    wordsList={toWordsList(wordsStore.getFirst)}
-                   onAdd={(word) => addWord('first', word)}
+                   onAdd={(word) => wordsStore.addWord('first', word)}
                    onFilterChange={(filter) => wordsStore.setFilterFirst(filter)}
-                   onChange={(word, key) => updateWord('first', word, key)}
-                   onDelete={(key) => deleteWord('first', key)}
+                   onChange={(word, key) => wordsStore.updateWord('first', word, key)}
+                   onDelete={(key) => wordsStore.deleteWord('first', key)}
             />
 
         <WordsList title="מילה שניה"
                    wordsList={toWordsList(wordsStore.getSecond)}
-                   onAdd={(word) => addWord('second', word)}
+                   onAdd={(word) => wordsStore.addWord('second', word)}
                    onFilterChange={(filter) => wordsStore.setFilterSecond(filter)}
-                   onChange={(word, key) => updateWord('second', word, key)}
-                   onDelete={(key) => deleteWord('second', key)}
+                   onChange={(word, key) => wordsStore.updateWord('second', word, key)}
+                   onDelete={(key) => wordsStore.deleteWord('second', key)}
             />
     </div>
-))
+)));
 
 MainView.displayName = 'MainView';
 
