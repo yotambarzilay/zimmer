@@ -22,7 +22,6 @@ module.exports = {
         firebase: 'firebase',
         react: 'React',
         'react-dom': 'ReactDOM',
-        redux: 'Redux',
         mobx: 'mobx',
         'mobx-react': 'mobxReact'
     },
