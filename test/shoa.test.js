@@ -7,7 +7,7 @@ test('shoa', (t) => {
     t.equal(shoa(), 1, 'should be 1');
 
     // t.notEqual(shoa(), 1, 'should not be 1');
-    t.equal(shoa(), 1, 'should be 1');
+    t.equal(shoa(), 3, 'should be 1');
 
     t.end();
 });
