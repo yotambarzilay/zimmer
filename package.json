@@ -9,7 +9,7 @@
     "publish": "npm version $1 -m \"Publish version %s\"",
     "post-publish": "git push && git push --tags",
     "test": "NODE_ENV=test nyc -s babel-tape-runner test/**/*.test.js | tap-spec && nyc report",
-    "coverage": "nyc report --reporter=text-lcov"
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "babel-preset-stage-2": "^6.13.0",
     "babel-register": "^6.18.0",
     "babel-tape-runner": "^2.0.1",
+    "coveralls": "^2.11.15",
     "css-loader": "^0.25.0",
     "extend-tape": "^1.2.0",
     "file-loader": "^0.9.0",
