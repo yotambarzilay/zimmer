@@ -8,8 +8,8 @@
     "serve": "serve docs/",
     "publish": "npm version $1 -m \"Publish version %s\"",
     "post-publish": "git push && git push --tags",
-    "test": "babel-tape-runner test/**/*.test.js | tap-spec",
-    "coverage": "NODE_ENV=test nyc npm test"
+    "test": "NODE_ENV=test nyc -s babel-tape-runner test/**/*.test.js | tap-spec && nyc report",
+    "coverage": "nyc report --reporter=text-lcov"
   },
   "repository": {
     "type": "git",
@@ -36,7 +36,6 @@
     "extend-tape": "^1.2.0",
     "file-loader": "^0.9.0",
     "firebase": "^3.6.4",
-    "istanbul": "^0.4.5",
     "lodash": "^4.17.2",
     "mobx": "^2.7.0",
     "mobx-react": "^4.0.3",
@@ -56,7 +55,9 @@
     "webpack-dev-server": "^1.16.1"
   },
   "nyc": {
-    "include": ["src"],
+    "include": [
+      "src"
+    ],
     "extension": [
       ".jsx",
       ".js"
