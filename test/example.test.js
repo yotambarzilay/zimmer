@@ -1,17 +1,21 @@
-const test = require('tape');
-
 import * as wordsAPI from '../src/apis/wordsAPI';
 
-test('shoa', (t) => {
-    t.plan(2);
+describe('shoa', () => {
 
-    wordsAPI.getWords().then((words) => {
-        t.deepEqual(words, {first: {a: 'word!'}});
+    it('get initial words', (done) => {
+        wordsAPI.getWords().then((words) => {
+            expect(words).toEqual({first: {a: 'word!'}});
+            done();
+        });
+    });
 
+    it('add word', (done) => {
         wordsAPI.addWord('first', 'shoa');
 
         wordsAPI.getWords().then((words) => {
-            t.deepEqual(words, {first: {a: 'word!', 'word-1': 'shoa'}});
+            expect(words).toEqual({first: {a: 'word!', 'word-1': 'shoa'}});
+            done();
         });
     });
+
 });
