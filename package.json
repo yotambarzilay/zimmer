@@ -54,20 +54,5 @@
     "tape-jsx-equals": "^1.0.0",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1"
-  },
-  "nyc": {
-    "all": true,
-    "include": [
-      "src"
-    ],
-    "extension": [
-      ".jsx",
-      ".js"
-    ],
-    "require": [
-      "babel-register"
-    ],
-    "sourceMap": false,
-    "instrument": false
   }
 }
