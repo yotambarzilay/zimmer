@@ -20,13 +20,11 @@
         second: _.sample(second)
       };
 
-      $("#first, #second, #zimmer-pic").fadeOut("fast", function () {
-        $("#first").html(couple.first);
-        $("#second").html(couple.second);
-        $('.picture').addClass('multiple-borders');
-        $("#zimmer-pic").attr('src', 'http://www.zimmer.co.il/zait-halav/B_(1).jpg');
+      $(".first, .second").fadeOut("fast", function () {
+        $(".first").html(couple.first);
+        $(".second").html(couple.second);
 
-        $("#first, #second, #zimmer-pic").fadeIn("fast");
+        $(".first, .second").fadeIn("fast");
       })
     }
 

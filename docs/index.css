@@ -9,13 +9,14 @@ body {
     height: 100%;
     flex-direction: column;
     background: url('bg.png') no-repeat;
-    background-size: cover ;
+    background-size: cover;
+    background-position: center center;;
 }
 
 .site-content {
     display: flex;
     height: 100%;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
 }
 
@@ -38,23 +39,63 @@ h1, h2 {
     color: #23374c;
 }
 
-.picture {
-    margin-bottom: 45px;
+.site-title.mobile {
+    font-size: 1.85rem;
+    font-weight: 900;
 }
 
 .zimmer-name {
-    margin-bottom: 20px;
     color: #fefefe;
     text-shadow: #e0e0e0 1px 1px 0;
 }
 
+.sign {
+    background: url('sign.png') no-repeat;
+    margin-bottom: 100px;
+}
+
+.sign-desktop {
+    width: 381px;
+    height: 241px;
+}
+
+.sign-desktop > .text {
+    padding-top: 30px;
+}
+
+.sign-mobile {
+    height: 170px;
+    width: 270px;
+    background-size: cover;
+}
+
+.sign-mobile > .text {
+    padding-top: 25px;
+}
+
+.sign-mobile h1 {
+    font-size: 1.68rem;
+}
+
 .generate-button {
-    border-radius: 20px;
     outline: none;
+    padding: 15px 50px;
+    font-size: 2rem;
+    background: #8E44AD;
+    border: 0;
+    font-weight: 900;
+}
+
+.generate-button:hover {
+    background-color: #663399;
 }
 
 .generate-button:focus {
-    border: none;
+    background: #8E44AD;
+}
+
+.generate-button:focus:hover {
+    background-color: #663399;
 }
 
 .multiple-borders {

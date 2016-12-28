@@ -14,31 +14,31 @@
 <body dir="rtl">
 <div class="site">
     <div class="site-content small-12 small-centered row text-center">
-        <h1 class="site-title align-center">מחולל שמות צימרים</h1>
+        <h1 class="site-title desktop align-center hide-for-small-only">מחולל שמות צימרים</h1>
+        <h1 class="site-title mobile align-center show-for-small-only">מחולל שמות צימרים</h1>
 
-        <div class="site-wrapper small-6 small-centered" id="box">
-            <div id="loading">
-                <div class='uil-ripple-css' style='transform:scale(0.92);'>
-                    <div></div>
-                    <div></div>
+        <div class="generated-content small-centered" id="contentWrapper">
+            <div class="sign sign-desktop hide-for-small-only">
+                <div class="text">
+                    <h1 class="zimmer-name">
+                        <span class="first"></span>
+                        <span class="second"></span>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="sign sign-mobile show-for-small-only">
+                <div class="text">
+                    <h1 class="zimmer-name">
+                        <span class="first"></span>
+                        <span class="second"></span>
+                    </h1>
                 </div>
             </div>
         </div>
 
-        <div class="generated-content" id="contentWrapper">
-            <div class="picture small-8 medium-3 small-centered">
-                <img id="zimmer-pic"/>
-            </div>
-            <div>
-                <h1 class="zimmer-name">
-                    <span id="first"></span>
-                    <span id="second"></span>
-                </h1>
-            </div>
-        </div>
-
         <div>
-            <button class="secondary button large generate-button">חולל</button>
+            <button class="button generate-button">חולל</button>
         </div>
     </div>
     <div class="site-footer small-12 small-centered row text-center">
