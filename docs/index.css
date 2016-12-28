@@ -45,8 +45,9 @@ h1, h2 {
 }
 
 .zimmer-name {
-    color: #fefefe;
-    text-shadow: #e0e0e0 1px 1px 0;
+    color: #673900;
+    text-shadow: #f3c994 1px 1px 0;
+    font-weight: 900;
 }
 
 .sign {
