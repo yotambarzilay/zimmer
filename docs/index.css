@@ -35,7 +35,8 @@ h1, h2 {
 
 .site-title {
     margin: 25px 0 50px;
-    color: #23374c;
+    font-weight: bold;
+    color: #446CB3;
 }
 
 .site-title.mobile {
