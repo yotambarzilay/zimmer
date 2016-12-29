@@ -7,10 +7,6 @@
     ".jsx",
     ".js"
   ],
-  "require": [
-    "babel-register",
-    "./test/helpers/mockClientDB"
-  ],
   "sourceMap": false,
   "instrument": false
 }

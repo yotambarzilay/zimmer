@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import * as clientDB from './clientDB';
 
-export function trackChanges(onChange) {
+export const trackChanges = (onChange) => {
   _.forEach(['first', 'second'], (collection) => {
 
     clientDB.listenToChildAdded('words/' + collection, (val, key) => {
@@ -31,7 +31,7 @@ export function trackChanges(onChange) {
           });
       });
   });
-}
+};
 
 export const getWords = () => clientDB.read('words');
 
