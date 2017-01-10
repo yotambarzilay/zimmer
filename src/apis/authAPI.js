@@ -24,14 +24,14 @@ export function loginWithGoogle() {
   })
 }
 
-export function getLoggedInUser() {
-  return clientDB.getLoggedInUser().then(user => {
+export function getLoggedInUser(cb) {
+  clientDB.getLoggedInUser().then(user => {
       if (user) {
-          return getUserInfo(user);
+          getUserInfo(user).then(cb);
       } else {
-          return null;
+          cb(null);
       }
-  })
+  });
 }
 
 export function logout() {

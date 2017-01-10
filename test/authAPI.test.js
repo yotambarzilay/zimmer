@@ -13,7 +13,7 @@ describe('authAPI', () => {
                 });
             });
 
-            authAPI.getLoggedInUser().then((user) => {
+            authAPI.getLoggedInUser((user) => {
                 expect(user).toEqual(null);
                 expect(user).toEqual(null);
 
@@ -38,7 +38,7 @@ describe('authAPI', () => {
                     });
                 });
 
-                authAPI.getLoggedInUser().then((user) => {
+                authAPI.getLoggedInUser((user) => {
                     expect(user).toEqual({uid, isAdmin: false});
                     expect(clientDB.read).toHaveBeenCalledWith(`admins/${uid}`);
 
@@ -65,7 +65,7 @@ describe('authAPI', () => {
                     });
                 });
 
-                authAPI.getLoggedInUser().then((user) => {
+                authAPI.getLoggedInUser((user) => {
                     expect(user).toEqual({uid, isAdmin: true});
                     expect(clientDB.read).toHaveBeenCalledWith(`admins/${uid}`);
 

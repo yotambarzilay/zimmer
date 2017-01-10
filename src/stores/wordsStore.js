@@ -8,15 +8,12 @@ class WordsStore {
   @observable filterFirst;
   @observable filterSecond;
 
-
   constructor () {
     this.first = asMap({});
     this.second = asMap({});
 
     this.filterFirst = '';
     this.filterSecond = '';
-
-    _.bindAll(this);
 
     getWords().then(this.setWords)
     trackChanges(this.onChange);

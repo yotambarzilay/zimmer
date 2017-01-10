@@ -1,5 +1,5 @@
 import { observable, computed, action } from 'mobx';
-import { loginWithGoogle, getLoggedInUser, logout } from 'apis/authAPI';
+import { loginWithGoogle, getLoggedInUser, logout } from '../apis/authAPI';
 
 class AuthStore {
     @observable _uid;
@@ -7,7 +7,7 @@ class AuthStore {
 
 
     constructor () {
-        getLoggedInUser().then(this.onUserChanged)
+        getLoggedInUser(this.onUserChanged)
     }
 
     @computed get isLoggedIn() {
@@ -37,6 +37,4 @@ class AuthStore {
     }
 }
 
-const authStore = new AuthStore();
-
-export default authStore;
+export default AuthStore;

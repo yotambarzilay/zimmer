@@ -4,13 +4,13 @@ import { useStrict } from 'mobx';
 import {Provider} from 'mobx-react';
 import Admin from './components/Admin';
 
-import authStore from './stores/authStore';
+import AuthStore from './stores/AuthStore';
 import wordsStore from './stores/wordsStore';
 
 useStrict(true);
 
 ReactDOM.render(
-    <Provider authStore={authStore} wordsStore={wordsStore}>
+    <Provider authStore={new AuthStore()} wordsStore={wordsStore}>
         <Admin />
     </Provider>,
     document.getElementById('app'));
