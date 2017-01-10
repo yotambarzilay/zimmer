@@ -27,3 +27,25 @@ export function update(path, key, data) {
 export function remove(path) {
     firebase.database().ref(path).remove();
 }
+
+export function loginWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return firebase.auth().signInWithPopup(provider)
+        .then(result => result.user)
+}
+
+export function getLoggedInUser() {
+    return new Promise((resolve) => {
+        const onAuthStateChange = user => {
+            firebase.auth().removeAuthTokenListener(onAuthStateChange);
+
+            resolve(user);
+        };
+
+        firebase.auth().onAuthStateChanged(onAuthStateChange);
+    });
+}
+
+export function logout() {
+    return firebase.auth().signOut();
+}

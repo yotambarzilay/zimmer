@@ -1,9 +1,7 @@
-import firebase from 'apis/firebase';
+import * as clientDB from './clientDB';
 
 const getAdminStatus = (uid) => {
-  return firebase.database().ref('admins/' + uid)
-    .once('value')
-    .then(snapshot => !!snapshot.val());
+  return clientDB.read('admins/' + uid).then(isAdmin => !!isAdmin);
 }
 
 const getUserInfo = (user) => {
@@ -19,9 +17,7 @@ const getUserInfo = (user) => {
 
 export function loginWithGoogle() {
   return new Promise((resolve, reject) => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider)
-      .then(result => result.user)
+    clientDB.loginWithGoogle()
       .then(getUserInfo)
       .then(resolve)
       .catch(reject);
@@ -29,20 +25,15 @@ export function loginWithGoogle() {
 }
 
 export function getLoggedInUser() {
-  return new Promise((resolve, reject) => {
-    const onAuthStateChange = user => {
-      firebase.auth().removeAuthTokenListener(onAuthStateChange);
-
+  return clientDB.getLoggedInUser().then(user => {
       if (user) {
-        getUserInfo(user).then(resolve);
+          return getUserInfo(user);
       } else {
-        resolve(null);
+          return null;
       }
-    };
-    firebase.auth().onAuthStateChanged(onAuthStateChange);
-  });
+  })
 }
 
 export function logout() {
-  return firebase.auth().signOut();
+  return clientDB.logout();
 }
