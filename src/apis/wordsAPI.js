@@ -33,7 +33,7 @@ export const trackChanges = (onChange) => {
   });
 };
 
-export const getWords = () => clientDB.read('words');
+export const getWords = (cb) => clientDB.read('words', cb);
 
 export const addWord = (collection, word) => clientDB.push('words/' + collection, word);
 

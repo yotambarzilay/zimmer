@@ -2,7 +2,7 @@ import _ from 'lodash';
 import * as authAPI from '../src/apis/authAPI';
 import * as clientDB from '../src/apis/clientDB';
 
-xdescribe('authAPI', () => {
+describe('authAPI', () => {
 
     describe('listenToAuthChange', () => {
 
@@ -21,30 +21,58 @@ xdescribe('authAPI', () => {
             });
 
             authAPI.listenToAuthChange(onAuthChangeCallback);
-            userChangeCb();
+
+            userChangeCb(null);
+
             expect(onAuthChangeCallback).toHaveBeenCalledWith(null);
         });
 
-        xdescribe('when user is admin', () => {
+        describe('when user is admin', () => {
+
+            it('should invoke callback with uid and isAdmin:true', (done) => {
+                const uid = 'spiderPigUid';
+                const isAdmin = true;
+                const onAuthChangeCallback = jasmine.createSpy('onAuthChangeCallback');
+
+                clientDB.listenToAuthChange.and.callFake((cb) => {
+                    _.defer(() => cb({uid}));
+                });
+
+                clientDB.read.and.callFake((path, cb) => {
+                    _.defer(() => {
+                        cb(isAdmin);
+
+                        expect(onAuthChangeCallback).toHaveBeenCalledWith({uid, isAdmin});
+                        expect(clientDB.read).toHaveBeenCalledWith(`admins/${uid}`, jasmine.any(Function));
+
+                        done();
+                    });
+                });
+
+                authAPI.listenToAuthChange(onAuthChangeCallback);
+            });
+
+        });
+
+        describe('when user is not admin', () => {
 
             it('should invoke callback with uid and isAdmin:false', (done) => {
                 const uid = 'spiderPigUid';
                 const isAdmin = false;
                 const onAuthChangeCallback = jasmine.createSpy('onAuthChangeCallback');
 
-                clientDB.read.and.callFake(() => {
-                    console.log('shoa');
-                    return Promise.resolve(isAdmin)
+                clientDB.listenToAuthChange.and.callFake((cb) => {
+                    _.defer(() => cb({uid}));
                 });
 
-                clientDB.listenToAuthChange.and.callFake((cb) => {
+                clientDB.read.and.callFake((path, cb) => {
                     _.defer(() => {
-                        cb({uid});
+                        cb(isAdmin);
 
                         expect(onAuthChangeCallback).toHaveBeenCalledWith({uid, isAdmin});
+                        expect(clientDB.read).toHaveBeenCalledWith(`admins/${uid}`, jasmine.any(Function));
 
                         done();
-
                     });
                 });
 
@@ -57,111 +85,20 @@ xdescribe('authAPI', () => {
 
     describe('logout', () => {
 
-        it('should logout', (done) => {
-            clientDB.logout.and.callFake(() => {
-                return new Promise(res => {
-                    _.defer(() => res());
-                });
-            });
+        it('should logout', () => {
+            authAPI.logout();
 
-            authAPI.logout().then(() => {
-                expect(clientDB.logout).toHaveBeenCalled();
-
-                done();
-            })
+            expect(clientDB.logout).toHaveBeenCalled();
         });
 
     });
 
     describe('loginWithGoogle', () => {
 
-        it('should resolve with an object containing the uid', (done) => {
-            const uid = 'someUid';
+        it('should login with google', () => {
+            authAPI.loginWithGoogle();
 
-            clientDB.loginWithGoogle.and.callFake(() => {
-                return new Promise(res => {
-                    _.defer(() => res({uid}))
-                })
-            });
-
-            clientDB.read.and.callFake(() => {
-                return new Promise(res => {
-                    _.defer(() => res(false))
-                })
-            });
-
-            authAPI.loginWithGoogle().then(user => {
-                expect(user.uid).toEqual(uid);
-
-                done();
-            });
-        });
-
-        describe('when user is admin', () => {
-
-            it('should resolve with isAdmin:true', (done) => {
-                const uid = 'someUid';
-
-                clientDB.loginWithGoogle.and.callFake(() => {
-                    return new Promise(res => {
-                        _.defer(() => res({uid}))
-                    })
-                });
-
-                clientDB.read.and.callFake(() => {
-                    return new Promise(res => {
-                        _.defer(() => res(true))
-                    })
-                });
-
-                authAPI.loginWithGoogle().then(user => {
-                    expect(user.isAdmin).toBe(true);
-                    expect(clientDB.read).toHaveBeenCalledWith(`admins/${uid}`);
-
-                    done();
-                });
-            });
-        });
-
-        describe('when user is not admin', () => {
-
-            it('should resolve with isAdmin:true', (done) => {
-                const uid = 'someUid';
-
-                clientDB.loginWithGoogle.and.callFake(() => {
-                    return new Promise(res => {
-                        _.defer(() => res({uid}))
-                    })
-                });
-
-                clientDB.read.and.callFake(() => {
-                    return new Promise(res => {
-                        _.defer(() => res(false))
-                    })
-                });
-
-                authAPI.loginWithGoogle().then(user => {
-                    expect(user.isAdmin).toBe(false);
-                    expect(clientDB.read).toHaveBeenCalledWith(`admins/${uid}`);
-
-                    done();
-                });
-            });
-        });
-
-        it('should resolve with null on login failure', (done) => {
-            clientDB.loginWithGoogle.and.callFake(() => {
-                return new Promise(res => {
-                    _.defer(() => res(null));
-                });
-            });
-
-            authAPI.loginWithGoogle().then(user => {
-                expect(user).toBe(null);
-                expect(clientDB.read).not.toHaveBeenCalled();
-
-                done();
-            });
+            expect(clientDB.loginWithGoogle).toHaveBeenCalled();
         });
 
     });

@@ -12,8 +12,8 @@ export function listenToChildRemoved(path, onChildRemoved) {
     firebase.database().ref(path).on('child_removed', (snapshot) => onChildRemoved(snapshot.val(), snapshot.key));
 }
 
-export function read(path) {
-    return firebase.database().ref(path).orderByPriority().once('value').then(snapshot => snapshot.val());
+export function read(path, cb) {
+    firebase.database().ref(path).orderByPriority().once('value').then(snapshot => cb(snapshot.val()));
 }
 
 export function push(path, data) {

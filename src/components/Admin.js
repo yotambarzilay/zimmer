@@ -12,8 +12,8 @@ const Admin =  inject('authStore', 'wordsStore')(observer(React.createClass({
     displayName: 'Admin',
 
     componentWillMount: function () {
-        authAPI.listenToAuthChange(this.props.authStore.onUserChanged);
-        wordsAPI.getWords().then(this.props.wordsStore.setWords);
+        authAPI.listenToAuthChange(this.props.authStore.setUserInfo);
+        wordsAPI.getWords(this.props.wordsStore.setWords);
         wordsAPI.trackChanges(this.props.wordsStore.onChange);
     },
 

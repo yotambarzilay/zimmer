@@ -9,14 +9,12 @@ describe('wordsAPI', () => {
         it('should get words from the database', (done) => {
             const mockWords = {first: {some: 'firstWord'}, second: {another: 'secondWord'}};
 
-            clientDB.read.and.callFake(() => {
-                return new Promise(res => {
-                    _.defer(() => res(mockWords))
-                });
+            clientDB.read.and.callFake((path, cb) => {
+                _.defer(() => cb(mockWords))
             });
 
-            wordsAPI.getWords().then((words) => {
-                expect(clientDB.read).toHaveBeenCalledWith('words');
+            wordsAPI.getWords((words) => {
+                expect(clientDB.read).toHaveBeenCalledWith('words', jasmine.any(Function));
                 expect(words).toEqual(mockWords);
 
                 done();

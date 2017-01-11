@@ -1,41 +1,29 @@
 import * as clientDB from './clientDB';
 
-const getAdminStatus = (uid) => {
-    return clientDB.read('admins/' + uid).then(isAdmin => !!isAdmin);
+const getAdminStatus = (uid, cb) => {
+    return clientDB.read('admins/' + uid, (isAdmin) => cb(!!isAdmin));
 }
 
-const getUserInfo = (user) => {
-  if (!user) {
-    return null;
-  }
-
-  return getAdminStatus(user.uid)
-    .then(isAdmin => {
-        return { uid: user.uid, isAdmin };
-      })
-}
-
-export function loginWithGoogle() {
-  return new Promise((resolve, reject) => {
-    clientDB.loginWithGoogle()
-      .then(getUserInfo)
-      .then(resolve)
-      .catch(reject);
-  })
+const getUserInfo = (user, cb) => {
+    return getAdminStatus(user.uid, isAdmin => {
+        cb({uid: user.uid, isAdmin});
+    })
 }
 
 export function listenToAuthChange(cb) {
-  clientDB.listenToAuthChange(user => {
-      if (user) {
-          getUserInfo(user).then((userInfo) => {
-              cb(userInfo)
-          });
-      } else {
-          cb(null);
-      }
-  });
+    clientDB.listenToAuthChange(user => {
+        if (user) {
+            getUserInfo(user, cb);
+        } else {
+            cb(null);
+        }
+    });
+}
+
+export function loginWithGoogle() {
+    clientDB.loginWithGoogle();
 }
 
 export function logout() {
-  return clientDB.logout();
+    return clientDB.logout();
 }

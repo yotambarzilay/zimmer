@@ -12,7 +12,7 @@ class AuthStore {
       return !!this._isAdmin;
     }
 
-    @action onUserChanged = (user) => {
+    @action setUserInfo = (user) => {
         if (user) {
             this._uid = user.uid;
             this._isAdmin = user.isAdmin;

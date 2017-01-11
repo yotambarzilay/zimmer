@@ -2,18 +2,10 @@ import _ from 'lodash';
 import { observable, asMap, action, computed, toJS } from 'mobx';
 
 class WordsStore {
-  @observable first;
-  @observable second;
-  @observable filterFirst;
-  @observable filterSecond;
-
-  constructor () {
-    this.first = asMap({});
-    this.second = asMap({});
-
-    this.filterFirst = '';
-    this.filterSecond = '';
-  }
+  @observable first = asMap({});
+  @observable second = asMap({});
+  @observable filterFirst = '';
+  @observable filterSecond = '';
 
   @action setFilterFirst = (filter) => {
     this.filterFirst = filter;
@@ -49,4 +41,4 @@ class WordsStore {
 
 }
 
-export default new WordsStore();
+export default WordsStore;
