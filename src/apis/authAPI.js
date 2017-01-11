@@ -1,7 +1,7 @@
 import * as clientDB from './clientDB';
 
 const getAdminStatus = (uid) => {
-  return clientDB.read('admins/' + uid).then(isAdmin => !!isAdmin);
+    return clientDB.read('admins/' + uid).then(isAdmin => !!isAdmin);
 }
 
 const getUserInfo = (user) => {
@@ -24,10 +24,12 @@ export function loginWithGoogle() {
   })
 }
 
-export function getLoggedInUser(cb) {
-  clientDB.getLoggedInUser().then(user => {
+export function listenToAuthChange(cb) {
+  clientDB.listenToAuthChange(user => {
       if (user) {
-          getUserInfo(user).then(cb);
+          getUserInfo(user).then((userInfo) => {
+              cb(userInfo)
+          });
       } else {
           cb(null);
       }

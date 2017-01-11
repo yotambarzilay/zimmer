@@ -2,75 +2,53 @@ import _ from 'lodash';
 import * as authAPI from '../src/apis/authAPI';
 import * as clientDB from '../src/apis/clientDB';
 
-describe('authAPI', () => {
+xdescribe('authAPI', () => {
 
-    describe('getLoggedInUser', () => {
+    describe('listenToAuthChange', () => {
 
-        it('should return null if not logged in', (done) => {
-            clientDB.getLoggedInUser.and.callFake(() => {
-                return new Promise(res => {
-                    _.defer(() => res(null))
-                });
-            });
+        it('should listen to db auth change', () => {
+            authAPI.listenToAuthChange();
 
-            authAPI.getLoggedInUser((user) => {
-                expect(user).toEqual(null);
-                expect(user).toEqual(null);
-
-                done();
-            });
+            expect(clientDB.listenToAuthChange).toHaveBeenCalled();
         });
 
-        describe('if user logged in and not admin', () => {
+        it('should invoke callback with null when user is logged out', () => {
+            const onAuthChangeCallback = jasmine.createSpy('onAuthChangeCallback');
+            let userChangeCb;
 
-            it('should return an object with the uid and isAdmin:false', (done) => {
-                const uid = 'someUserId';
-
-                clientDB.getLoggedInUser.and.callFake(() => {
-                    return new Promise(res => {
-                        _.defer(() => res({uid}))
-                    });
-                });
-
-                clientDB.read.and.callFake(() => {
-                    return new Promise(res => {
-                        _.defer(() => res(false));
-                    });
-                });
-
-                authAPI.getLoggedInUser((user) => {
-                    expect(user).toEqual({uid, isAdmin: false});
-                    expect(clientDB.read).toHaveBeenCalledWith(`admins/${uid}`);
-
-                    done();
-                });
+            clientDB.listenToAuthChange.and.callFake((cb) => {
+                userChangeCb = cb;
             });
 
+            authAPI.listenToAuthChange(onAuthChangeCallback);
+            userChangeCb();
+            expect(onAuthChangeCallback).toHaveBeenCalledWith(null);
         });
 
-        describe('if user logged in and is admin', () => {
+        xdescribe('when user is admin', () => {
 
-            it('should return an object with the uid and isAdmin:true', (done) => {
-                const uid = 'someUserId';
-
-                clientDB.getLoggedInUser.and.callFake(() => {
-                    return new Promise(res => {
-                        _.defer(() => res({uid}))
-                    });
-                });
+            it('should invoke callback with uid and isAdmin:false', (done) => {
+                const uid = 'spiderPigUid';
+                const isAdmin = false;
+                const onAuthChangeCallback = jasmine.createSpy('onAuthChangeCallback');
 
                 clientDB.read.and.callFake(() => {
-                    return new Promise(res => {
-                        _.defer(() => res(true));
+                    console.log('shoa');
+                    return Promise.resolve(isAdmin)
+                });
+
+                clientDB.listenToAuthChange.and.callFake((cb) => {
+                    _.defer(() => {
+                        cb({uid});
+
+                        expect(onAuthChangeCallback).toHaveBeenCalledWith({uid, isAdmin});
+
+                        done();
+
                     });
                 });
 
-                authAPI.getLoggedInUser((user) => {
-                    expect(user).toEqual({uid, isAdmin: true});
-                    expect(clientDB.read).toHaveBeenCalledWith(`admins/${uid}`);
-
-                    done();
-                });
+                authAPI.listenToAuthChange(onAuthChangeCallback);
             });
 
         });

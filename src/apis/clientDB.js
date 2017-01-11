@@ -34,16 +34,8 @@ export function loginWithGoogle() {
         .then(result => result.user)
 }
 
-export function getLoggedInUser() {
-    return new Promise((resolve) => {
-        const onAuthStateChange = user => {
-            firebase.auth().removeAuthTokenListener(onAuthStateChange);
-
-            resolve(user);
-        };
-
-        firebase.auth().onAuthStateChanged(onAuthStateChange);
-    });
+export function listenToAuthChange(cb) {
+    firebase.auth().onAuthStateChanged(cb);
 }
 
 export function logout() {

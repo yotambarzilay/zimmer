@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { observable, asMap, action, computed, toJS } from 'mobx';
-import { getWords, trackChanges, addWord, updateWord, deleteWord } from 'apis/wordsAPI';
 
 class WordsStore {
   @observable first;
@@ -14,9 +13,6 @@ class WordsStore {
 
     this.filterFirst = '';
     this.filterSecond = '';
-
-    getWords().then(this.setWords)
-    trackChanges(this.onChange);
   }
 
   @action setFilterFirst = (filter) => {
@@ -51,11 +47,6 @@ class WordsStore {
     return _.pickBy(toJS(this.second), (word) => _.includes(word, this.filterSecond));
   }
 
-    addWord = addWord;
-
-    updateWord = updateWord;
-
-    deleteWord = deleteWord;
 }
 
 export default new WordsStore();

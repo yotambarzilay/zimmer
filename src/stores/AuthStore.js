@@ -1,14 +1,8 @@
 import { observable, computed, action } from 'mobx';
-import { loginWithGoogle, getLoggedInUser, logout } from '../apis/authAPI';
 
 class AuthStore {
     @observable _uid;
     @observable _isAdmin;
-
-
-    constructor () {
-        getLoggedInUser(this.onUserChanged)
-    }
 
     @computed get isLoggedIn() {
         return !!this._uid;
@@ -28,13 +22,6 @@ class AuthStore {
         }
     };
 
-    login = () => {
-        loginWithGoogle().then(this.onUserChanged);
-    };
-
-    logout = () => {
-      logout().then(this.onUserChanged);
-    }
 }
 
 export default AuthStore;
