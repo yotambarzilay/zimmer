@@ -20,8 +20,8 @@
   "author": "yotambarzilay",
   "license": "ISC",
   "engines": {
-    "node": "6.6.0",
-    "npm": "3.10.6"
+    "node": "6.9.2",
+    "npm": "3.10.9"
   },
   "devDependencies": {
     "babel-core": "^6.14.0",
