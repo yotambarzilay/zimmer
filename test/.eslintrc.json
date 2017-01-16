@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    "jasmine"
+  ],
+  "env": {
+    "jasmine": true
+  },
+  "rules": {
+    "jasmine/no-focused-tests": 2,
+    "jasmine/no-unsafe-spy": 2,
+    "jasmine/no-suite-dupes": [2, "branch"],
+    "jasmine/no-spec-dupes": [2, "branch"]
+  }
+}

@@ -20,7 +20,7 @@ module.exports = {
         ]
     },
     resolve:{
-        modulesDirectories: ['src', 'node_modules']
+        modulesDirectories: ['node_modules']
     },
     externals: {
         lodash: '_',

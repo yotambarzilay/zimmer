@@ -2,35 +2,35 @@ import _ from 'lodash';
 import * as clientDB from './clientDB';
 
 export const trackChanges = (onChange) => {
-  _.forEach(['first', 'second'], (collection) => {
+	_.forEach(['first', 'second'], (collection) => {
 
-    clientDB.listenToChildAdded('words/' + collection, (val, key) => {
-        onChange({
-            collection,
-            type: 'update',
-            key,
-            val
-        });
-    });
+		clientDB.listenToChildAdded('words/' + collection, (val, key) => {
+			onChange({
+				collection,
+				type: 'update',
+				key,
+				val
+			});
+		});
 
-      clientDB.listenToChildChanged('words/' + collection, (val, key) => {
-          onChange({
-              collection,
-              type: 'update',
-              key,
-              val
-          });
-      });
+		clientDB.listenToChildChanged('words/' + collection, (val, key) => {
+			onChange({
+				collection,
+				type: 'update',
+				key,
+				val
+			});
+		});
 
-      clientDB.listenToChildRemoved('words/' + collection, (val, key) => {
-          onChange({
-              collection,
-              type: 'remove',
-              key,
-              val
-          });
-      });
-  });
+		clientDB.listenToChildRemoved('words/' + collection, (val, key) => {
+			onChange({
+				collection,
+				type: 'remove',
+				key,
+				val
+			});
+		});
+	});
 };
 
 export const getWords = (cb) => clientDB.read('words', cb);
