@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import * as wordsAPI from '../src/apis/wordsAPI';
-import * as clientDB from '../src/apis/clientDB';
+import * as wordsAPI from '../../src/apis/wordsAPI';
+import * as clientDB from '../../src/apis/clientDB';
 
 describe('wordsAPI', () => {
 

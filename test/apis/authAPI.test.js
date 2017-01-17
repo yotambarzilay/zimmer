@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import * as authAPI from '../src/apis/authAPI';
-import * as clientDB from '../src/apis/clientDB';
+import * as authAPI from '../../src/apis/authAPI';
+import * as clientDB from '../../src/apis/clientDB';
 
 describe('authAPI', () => {
 
