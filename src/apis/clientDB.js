@@ -30,8 +30,7 @@ export function remove(path) {
 
 export function loginWithGoogle() {
 	const provider = new firebase.auth.GoogleAuthProvider();
-	return firebase.auth().signInWithPopup(provider)
-		.then(result => result.user);
+	firebase.auth().signInWithPopup(provider);
 }
 
 export function listenToAuthChange(cb) {
