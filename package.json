@@ -10,6 +10,7 @@
     "publish": "npm version $1 -m \"Publish version %s\"",
     "post-publish": "git push && git push --tags",
     "test": "npm run lint && JASMINE_CONFIG_PATH=jasmine.json nyc jasmine",
+    "update-version": "npm version $1 -m \"Update version to %s\"",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
